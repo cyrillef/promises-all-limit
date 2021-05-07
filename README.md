@@ -1,4 +1,4 @@
-# Promise-All-Limit
+# Promises-All-Limit
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
@@ -13,13 +13,13 @@ The module will allow to run all in parallel, all with a limit of concurrent ope
 ## Installation
 
 ```bash
-npm install --save promise-all-limit
+npm install --save promises-all-limit
 ```
 
 ## Usage
 
 ```javascript
-const promiseAllLimit = require('promise-all-limit')
+const promisesAllLimit = require('promises-all-limit')
 
 const functionIterator = (index) => {
   // Your code goes here.
@@ -38,7 +38,7 @@ const nbConcurrentJob = 5;
 
 const run = async () => {
   try {
-    const results = await promiseAllLimit(
+    const results = await promisesAllLimit(
       nbConcurrentJob, // How many ti run concurrently? -1 = all / 1 = run in serie / 2..n = run in parallel with a limit
       iterator, // function or generator to create promises
       true // continue if any promise is rejected

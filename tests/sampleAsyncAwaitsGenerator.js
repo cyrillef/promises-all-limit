@@ -21,7 +21,7 @@
 
 /*jshint esversion: 9 */
 
-const { promiseAllLimit } = require('../index');
+const { promisesAllLimit } = require('../index');
 const { createJobDefinition, report, createJobWorkers } = require('./common');
 
 const firstOneFails = false;
@@ -50,9 +50,9 @@ const PromiseAllTest = async () => {
 };
 
 const ParallelLimitStops = async () => {
-	console.info(`using promiseAllLimit - running ${nbConcurrentJob} jobs in parallel, stops on first error`);
+	console.info(`using promisesAllLimit - running ${nbConcurrentJob} jobs in parallel, stops on first error`);
 	try {
-		const results = await promiseAllLimit(nbConcurrentJob, jobWorkersGenerator, false);
+		const results = await promisesAllLimit(nbConcurrentJob, jobWorkersGenerator, false);
 		report(results);
 	} catch (err) {
 		report(err);
@@ -60,9 +60,9 @@ const ParallelLimitStops = async () => {
 };
 
 const ParallelLimitContinues = async () => {
-	console.info(`using promiseAllLimit - running ${nbConcurrentJob} jobs in parallel, continue on errors`);
+	console.info(`using promisesAllLimit - running ${nbConcurrentJob} jobs in parallel, continue on errors`);
 	try {
-		const results = await promiseAllLimit(nbConcurrentJob, jobWorkersGenerator, true)
+		const results = await promisesAllLimit(nbConcurrentJob, jobWorkersGenerator, true)
 		report(results);
 	} catch (err) {
 		report(err);
@@ -70,9 +70,9 @@ const ParallelLimitContinues = async () => {
 };
 
 const SerieStops = async () => {
-	console.info('using promiseAllLimit - running jobs in serie, stops on first error');
+	console.info('using promisesAllLimit - running jobs in serie, stops on first error');
 	try {
-		const results = await promiseAllLimit(1, jobWorkersGenerator, false);
+		const results = await promisesAllLimit(1, jobWorkersGenerator, false);
 		report(results);
 	} catch (err) {
 		report(err);
@@ -80,9 +80,9 @@ const SerieStops = async () => {
 };
 
 const SerieContinues = async () => {
-	console.info('using promiseAllLimit - running jobs in serie, continue on errors');
+	console.info('using promisesAllLimit - running jobs in serie, continue on errors');
 	try {
-		const results = await promiseAllLimit(1, jobWorkersGenerator, true);
+		const results = await promisesAllLimit(1, jobWorkersGenerator, true);
 		report(results);
 	} catch (err) {
 		report(err);

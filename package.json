@@ -1,5 +1,5 @@
 {
-  "name": "@cyrillef/promise-all-limit",
+  "name": "promises-all-limit",
   "private": false,
   "version": "1.0.0",
   "description": "Run all promises in serie/parallelLimit/parallel and returns results for all.",
@@ -12,13 +12,13 @@
     "serie",
     "concurrency"
   ],
-  "homepage": "https://github.com/cyrillef/promise-all-limit",
+  "homepage": "https://github.com/cyrillef/promises-all-limit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cyrillef/promise-all-limit"
+    "url": "https://github.com/cyrillef/promises-all-limit"
   },
   "bugs": {
-    "url": "https://github.com/cyrillef/promise-all-limit/issues"
+    "url": "https://github.com/cyrillef/promises-all-limit/issues"
   },
   "engines": {
     "node": ">= 12.0.0"

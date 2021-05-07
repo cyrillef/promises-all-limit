@@ -55,7 +55,7 @@ const promiseStatus = (promise) => {
 	return (result);
 };
 
-const promiseAllLimit = (limit, iterator, continueOnError) => {
+const promisesAllLimit = (limit, iterator, continueOnError) => {
 
 	const isGenerator = (func) => typeof func.constructor === 'function' && func.constructor.name === 'GeneratorFunction';
 	const makeIterator = (func) => ({
@@ -142,4 +142,4 @@ const promiseAllLimit = (limit, iterator, continueOnError) => {
 	}));
 };
 
-module.exports = { promiseAllLimit, promiseStatus };
+module.exports = { promisesAllLimit, promiseStatus };

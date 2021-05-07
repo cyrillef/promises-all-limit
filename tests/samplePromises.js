@@ -21,7 +21,7 @@
 
 /*jshint esversion: 9 */
 
-const { promiseAllLimit } = require('../index');
+const { promisesAllLimit } = require('../index');
 const { createJobDefinition, report, createJobWorkers } = require('./common');
 
 const firstOneFails = false;
@@ -47,8 +47,8 @@ const PromiseAllTest = () => {
 
 const ParallelLimitStops = () => {
 	return (new Promise((fulfill, reject) => {
-		console.info(`using promiseAllLimit - running ${nbConcurrentJob} jobs in parallel, stops on first error`);
-		promiseAllLimit(nbConcurrentJob, createJobWorkerFromIndex, false)
+		console.info(`using promisesAllLimit - running ${nbConcurrentJob} jobs in parallel, stops on first error`);
+		promisesAllLimit(nbConcurrentJob, createJobWorkerFromIndex, false)
 			.then((prs) => report(prs, fulfill))
 			//.catch((error) => reject(error)); // In theory, we would report the error, but in this sample we want to contine the chain
 			.catch((err) => report(err, fulfill));
@@ -57,8 +57,8 @@ const ParallelLimitStops = () => {
 
 const ParallelLimitContinues = () => {
 	return (new Promise((fulfill, reject) => {
-		console.info(`using promiseAllLimit - running ${nbConcurrentJob} jobs in parallel, continue on errors`);
-		promiseAllLimit(nbConcurrentJob, createJobWorkerFromIndex, true)
+		console.info(`using promisesAllLimit - running ${nbConcurrentJob} jobs in parallel, continue on errors`);
+		promisesAllLimit(nbConcurrentJob, createJobWorkerFromIndex, true)
 			.then((prs) => report(prs, fulfill))
 			//.catch((error) => reject(error)); // In theory, we would report the error, but in this sample we want to contine the chain
 			.catch((err) => report(err, fulfill));
@@ -67,8 +67,8 @@ const ParallelLimitContinues = () => {
 
 const SerieStops = () => {
 	return (new Promise((fulfill, reject) => {
-		console.info('using promiseAllLimit - running jobs in serie, stops on first error');
-		promiseAllLimit(1, createJobWorkerFromIndex, false)
+		console.info('using promisesAllLimit - running jobs in serie, stops on first error');
+		promisesAllLimit(1, createJobWorkerFromIndex, false)
 			.then((prs) => report(prs, fulfill))
 			//.catch((error) => reject(error)); // In theory, we would report the error, but in this sample we want to contine the chain
 			.catch((err) => report(err, fulfill));
@@ -77,8 +77,8 @@ const SerieStops = () => {
 
 const SerieContinues = () => {
 	return (new Promise((fulfill, reject) => {
-		console.info('using promiseAllLimit - running jobs in serie, continue on errors');
-		promiseAllLimit(1, createJobWorkerFromIndex, true)
+		console.info('using promisesAllLimit - running jobs in serie, continue on errors');
+		promisesAllLimit(1, createJobWorkerFromIndex, true)
 			.then((prs) => report(prs, fulfill))
 			//.catch((error) => reject(error)); // In theory, we would report the error, but in this sample we want to contine the chain
 			.catch((err) => report(err, fulfill));

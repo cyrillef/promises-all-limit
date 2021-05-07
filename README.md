@@ -1,6 +1,6 @@
-# Promises-Control
+# Promise-All-Limit
 
-[![license](https://img.shields.io/github/license/cyrillef/promises-all-limit.svg)](LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
 
 An ECMAScript 2015 Promise is a great way to handle asynchronous operations. The Promise.all() function provides an easy interface to let a bunch of promises settle concurrently. However, it's an all-or-nothing approach: all your promises get created simultaneously. If you have a large number of operations that you want to run with some concurrency, Promise.all() is not good.
 
@@ -56,3 +56,14 @@ console.log('Starting...');
 runTests();
 
 ```
+
+# License
+
+This module is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT).  
+Please see the [LICENSE](LICENSE) file for full details.
+
+## Author
+
+Cyrille Fauvel  
+[@FAUVELCyrille](https://twitter.com/FAUVELCyrille),  
+[Forge Partner Development](http://forge.autodesk.com)

@@ -1,12 +1,16 @@
 {
-  "name": "promise-all-limit",
+  "name": "@cyrillef/promise-all-limit",
+  "private": false,
   "version": "1.0.0",
   "description": "Run all promises in serie/parallelLimit/parallel and returns results for all.",
   "author": "Cyrille Fauvel <cyrillef@free.fr>",
   "license": "MIT",
   "keywords": [
     "nodejs",
-    "promise"
+    "promise",
+    "parallel",
+    "serie",
+    "concurrency"
   ],
   "homepage": "https://github.com/cyrillef/promise-all-limit",
   "repository": {

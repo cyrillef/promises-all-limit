@@ -1,0 +1,30 @@
+{
+  "name": "promise-all-limit",
+  "version": "1.0.0",
+  "description": "Run all promises in serie/parallelLimit/parallel and returns results for all.",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/visionmedia/superagent/issues"
+  },
+  "scripts": {
+    
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "tests/*.js",
+  ],
+  "keywords": [
+    "nodejs",
+    "promise"
+  ],
+  "author": "Cyrille Fauvel <cyrillef@free.fr>",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}

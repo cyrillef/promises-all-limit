@@ -1,0 +1,9 @@
+lib-cov
+coverage.html
+.DS_Store
+node_modules
+.idea
+.vscode
+package-lock.json
+*.log
+coverage

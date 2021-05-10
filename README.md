@@ -25,12 +25,24 @@ const functionIterator = (index) => {
   // Your code goes here.
   // If there is job to run, return the next job item as a promise.
   // Otherwise, return null to indicate that all promises have been created.
+
+  // for example
+  // return (new Promise((fullfil, reject) => setTimeout(() => reject({ error: 'this is an error' }), delay)));
+  // or
+  // return (new Promise((fullfil, reject) => setTimeout(() => fullfil({ success: 'this is success' }), delay)));
 };
 
 const generatePromises = function * () {
   // Your code goes here.
   // If there is job to run, yield the next job item as a promise.
   // Otherwise, return to indicate that all promises have been created.
+
+  // for example
+  // for (let index = 0; index < ??? ; index++) {
+  //   yield return (new Promise((fullfil, reject) => setTimeout(() => reject({ error: 'this is an error' }), delay)));
+  // or
+  //   yield return (new Promise((fullfil, reject) => setTimeout(() => fullfil({ success: 'this is success' }), delay)));
+  // }
 }
 
 // The number of promises to process simultaneously.
@@ -39,7 +51,7 @@ const nbConcurrentJob = 5;
 const run = async () => {
   try {
     const results = await promisesAllLimit(
-      nbConcurrentJob, // How many ti run concurrently? -1 = all / 1 = run in serie / 2..n = run in parallel with a limit
+      nbConcurrentJob, // How many to run concurrently? -1 = all / 1 = run in serie / 2..n = run in parallel with a limit
       iterator, // function or generator to create promises
       true // continue if any promise is rejected
     );
@@ -53,9 +65,11 @@ const run = async () => {
 };
 
 console.log('Starting...');
-runTests();
+run();
 
 ```
+
+more examples available in /tests folders
 
 # License
 

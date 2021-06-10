@@ -1,7 +1,7 @@
 {
   "name": "promises-all-limit",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run all promises in serie/parallelLimit/parallel and returns results for all.",
   "author": "Cyrille Fauvel <cyrillef@free.fr>",
   "license": "MIT",
@@ -34,8 +34,6 @@
     "package.json",
     "tests/*.js"
   ],
-  "dependencies": {
-  },
   "prettier": {
     "singleQuote": true
   }

@@ -19,7 +19,7 @@ npm install --save promises-all-limit
 ## Usage
 
 ```javascript
-const promisesAllLimit = require('promises-all-limit')
+const { promisesAllLimit } = require('promises-all-limit')
 
 const functionIterator = (index) => {
   // Your code goes here.
@@ -53,7 +53,8 @@ const run = async () => {
     const results = await promisesAllLimit(
       nbConcurrentJob, // How many to run concurrently? -1 = all / 1 = run in serie / 2..n = run in parallel with a limit
       iterator, // function or generator to create promises
-      true // continue if any promise is rejected
+      true, // continue if any promise is rejected
+      (error, result, index) => { /* ... */ } // progress function
     );
     console.log('done.')
     // Will return Rejected and Fullfilled promises processed (all are processed if the 3rd parameter is true,

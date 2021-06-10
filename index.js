@@ -55,7 +55,7 @@ const promiseStatus = (promise) => {
 	return (result);
 };
 
-const promisesAllLimit = (limit, iterator, continueOnError) => {
+const promisesAllLimit = (limit, iterator, continueOnError, progress) => {
 
 	const isGenerator = (func) => typeof func.constructor === 'function' && func.constructor.name === 'GeneratorFunction';
 	const makeIterator = (func) => ({
@@ -64,6 +64,7 @@ const promisesAllLimit = (limit, iterator, continueOnError) => {
 			return (promise ? { value: promise } : { done: true });
 		}
 	});
+	const asyncIteratorDone = (value) => (value === null || (value.done && value.done === true));
 
 	limit = (limit < -1 && 1) || limit || 1;
 	const data = {
@@ -73,6 +74,7 @@ const promisesAllLimit = (limit, iterator, continueOnError) => {
 		itmp: [],
 		index: 0,
 		continueOnError,
+		progress,
 		hasRejected: false,
 		results: [],
 	};
@@ -91,10 +93,16 @@ const promisesAllLimit = (limit, iterator, continueOnError) => {
 	// Launch process
 	return (new Promise(async (fulfill, reject) => {
 
-		for (; ; ) {
+		for (; ;) {
 			try {
-				await Promise.race(data.tmp);
+				const result = await Promise.race(data.tmp);
+				// if (!asyncIteratorDone(result)) { // In case, we are using async iterators
+				// 	if (data.progress && typeof progress === 'function')
+				// 		data.progress(null, result, ?);
+				// }
 			} catch (ex) {
+				if (data.progress && typeof progress === 'function')
+					data.progress(ex);
 			}
 			// Save resolved or Rejected promise(s)
 			const nb = [];
@@ -102,10 +110,15 @@ const promisesAllLimit = (limit, iterator, continueOnError) => {
 				if (!data.tmp[k].isPending()) {
 					if (data.tmp[k].isRejected())
 						data.hasRejected = true;
-					//data.results[data.itmp[k]] = data.tmp[k];
-					data.results[data.itmp[k]] = data.tmp[k].value();
+					const result = data.tmp[k].value();
+					if (!asyncIteratorDone(result)) { // In case, we are using async iterators
+						data.results[data.itmp[k]] = result;
+						nb.push(k);
+
+						if (data.progress && typeof progress === 'function')
+							data.progress(null, result, data.itmp[k]);
+					}
 					data.itmp[k] = data.tmp[k] = undefined;
-					nb.push(k);
 					break;
 				}
 			}
@@ -119,7 +132,6 @@ const promisesAllLimit = (limit, iterator, continueOnError) => {
 			}
 			// Fill new jobs in if any left
 			for (let n = 0; n < nb.length; n++, data.index++) {
-				//const job = promiseStatus(data.iterator(data.index));
 				const item = data.iterator.next(data.index);
 				const job = promiseStatus(item.value);
 				if (!job || !item || item.done)

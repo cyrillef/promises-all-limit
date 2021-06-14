@@ -64,7 +64,7 @@ const promisesAllLimit = (limit, iterator, continueOnError, progress) => {
 			return (promise ? { value: promise } : { done: true });
 		}
 	});
-	const asyncIteratorDone = (value) => (value === null || (value.done && value.done === true));
+	const asyncIteratorDone = (value) => (value === null || (value && value.done && value.done === true));
 
 	limit = (limit < -1 && 1) || limit || 1;
 	const data = {
